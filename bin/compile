@@ -37,7 +37,7 @@ if [ ! -f "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}" ] || [ -n "$NOCACHE_OTELCOL"
   echo "-----> Downloaded OpenTelemetry Collector v${VERSION}"
 
   rm -f "$CACHE_DIR/${OTELCOL_BINARY}-*" || true
-  chmod +x "${OTELCOL_BINARY}-${VERSION}"
+  chmod a+x "${OTELCOL_BINARY}-${VERSION}"
   mv "${OTELCOL_BINARY}-${VERSION}" "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}"
 else
   echo "-----> OpenTelemetry Collector v${VERSION} found in cache"
@@ -45,6 +45,7 @@ fi
 
 # Copy binaries
 mkdir -p "$BUILD_DIR/opentelemetry"
+chmod a+x "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}"
 cp "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}" "$BUILD_DIR/opentelemetry/otelcol"
 
 # Install the runner

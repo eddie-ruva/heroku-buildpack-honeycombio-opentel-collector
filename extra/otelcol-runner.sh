@@ -16,6 +16,7 @@ else
   echo $(ls)
   echo "./opentelemetry/otelcol --config $APP_OTELCOL/config.yml 2>&1 &"
   echo "-----> "
+  chmod a+x ./opentelemetry/otelcol
   bash -c "./opentelemetry/otelcol --config $APP_OTELCOL/config.yml 2>&1 &"
   echo "-----> Started OpenTelemetry Collector"
 fi
