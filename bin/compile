@@ -43,8 +43,8 @@ else
 fi
 
 # Copy binaries
-mkdir -p "$BUILD_DIR/bin"
-cp "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}" "$BUILD_DIR/bin/otelcol"
+mkdir -p "$BUILD_DIR/opentelemetry"
+cp "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}" "$BUILD_DIR/opentelemetry/otelcol"
 
 # Install the runner
 echo "-----> Installing OpenTelemetry Collector runner"
