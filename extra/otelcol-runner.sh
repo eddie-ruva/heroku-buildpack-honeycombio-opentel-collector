@@ -14,6 +14,7 @@ if [ -n "$DISABLE_OTELCOL" ]; then
 else
   echo "-----> Starting OpenTelemetry Collector"
   echo $(ls)
+  echo $(ls opentelemetry)
   echo "./opentelemetry/otelcol --config $APP_OTELCOL/config.yml 2>&1 &"
   echo "-----> "
   chmod a+x ./opentelemetry/otelcol
