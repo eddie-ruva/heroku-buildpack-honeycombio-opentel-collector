@@ -49,5 +49,5 @@ cp "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}" "$BUILD_DIR/bin/otelcol"
 # Install the runner
 echo "-----> Installing OpenTelemetry Collector runner"
 mkdir -p "$BUILD_DIR/.profile.d"
-cp "$BUILDPACK_DIR/extra/otelcol.sh" "$BUILD_DIR/.profile.d/"
-chmod +x "$BUILD_DIR/.profile.d/otelcol.sh"
+cp "$BUILDPACK_DIR/extra/otelcol-runner.sh" "$BUILD_DIR/.profile.d/"
+chmod +x "$BUILD_DIR/.profile.d/otelcol-runner.sh"
