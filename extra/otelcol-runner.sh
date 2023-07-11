@@ -16,6 +16,6 @@ else
   echo "$OTELCOL_CONFIG_DIR/otelcol --config $APP_OTELCOL/config.yml 2>&1 &"
   echo "-----> "
   chmod a+x $OTELCOL_CONFIG_DIR/otelcol_hny_linux_amd64
-  $OTELCOL_CONFIG_DIR/otelcol --config $APP_OTELCOL/config.yml 2>&1&
+  $OTELCOL_CONFIG_DIR/otelcol_hny_linux_amd64 --config $APP_OTELCOL/config.yml 2>&1&
   echo "-----> Started OpenTelemetry Collector"
 fi
