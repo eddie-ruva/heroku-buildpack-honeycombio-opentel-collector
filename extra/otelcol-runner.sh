@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-export PATH="$PATH:$HOME/bin"
+APP_OTELCOL="$HOME/otelcol"
+export OTELCOL_CONFIG_DIR="$HOME/.otelcol"
 
-APP_OTELCOL="/app/otelcol"
-
-PRERUN_SCRIPT="$APP_OTELCOL/prerun.sh"
-if [ -e "$PRERUN_SCRIPT" ]; then
-  source "$PRERUN_SCRIPT"
+if [ "$DYNOTYPE" == "run" ]; then
+  exit 0
 fi
 
 if [ -n "$DISABLE_OTELCOL" ]; then
@@ -14,10 +12,10 @@ if [ -n "$DISABLE_OTELCOL" ]; then
 else
   echo "-----> Starting OpenTelemetry Collector"
   echo $(ls)
-  echo $(ls opentelemetry)
-  echo "./opentelemetry/otelcol --config $APP_OTELCOL/config.yml 2>&1 &"
+  echo $(ls $OTELCOL_CONFIG_DIR)
+  echo "$OTELCOL_CONFIG_DIR/otelcol --config $APP_OTELCOL/config.yml 2>&1 &"
   echo "-----> "
-  chmod a+x ./opentelemetry/otelcol
-  bash -c "./opentelemetry/otelcol --config $APP_OTELCOL/config.yml 2>&1 &"
+  chmod a+x $OTELCOL_CONFIG_DIR/otelcol_hny_linux_amd64
+  $OTELCOL_CONFIG_DIR/otelcol --config $APP_OTELCOL/config.yml 2>&1&
   echo "-----> Started OpenTelemetry Collector"
 fi

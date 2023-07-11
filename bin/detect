@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-echo "OpenTelemetry Collector" && exit 0
+echo "Honeycombio OpenTelemetry Collector" && exit 0

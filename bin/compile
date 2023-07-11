@@ -28,25 +28,24 @@ else
   VERSION="$PINNED_VERSION"
 fi
 
-OTELCOL_BINARY="otelcol_hny"
+OTELCOL_BINARY="otelcol_hny_linux_amd64"
+
+OTELCOL_CONFIG_DIR="$BUILD_DIR/.otelcol"
+
+NOCACHE_OTELCOL=true
 
 # Download
-if [ ! -f "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}" ] || [ -n "$NOCACHE_OTELCOL" ]; then
+if [ ! -f "$CACHE_DIR/${OTELCOL_BINARY}" ] || [ -n "$NOCACHE_OTELCOL" ]; then
   echo "-----> Installing v${VERSION} of OpenTelemetry Collector"
-  curl -sS -o "${OTELCOL_BINARY}-${VERSION}" https://github.com/honeycombio/opentelemetry-collector-configs/releases/download/v${VERSION}/${OTELCOL_BINARY}_${VERSION}_linux_amd64
+  wget -P "$OTELCOL_CONFIG_DIR/" "https://github.com/honeycombio/opentelemetry-collector-configs/releases/download/v$VERSION/$OTELCOL_BINARY" -o $OTELCOL_BINARY > /dev/null 2>&1
   echo "-----> Downloaded OpenTelemetry Collector v${VERSION}"
 
-  rm -f "$CACHE_DIR/${OTELCOL_BINARY}-*" || true
-  chmod a+x "${OTELCOL_BINARY}-${VERSION}"
-  mv "${OTELCOL_BINARY}-${VERSION}" "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}"
+  rm -f "$CACHE_DIR/$OTELCOL_BINARY" || true
+  cp "$OTELCOL_CONFIG_DIR/$OTELCOL_BINARY" "$CACHE_DIR/$OTELCOL_BINARY"
 else
   echo "-----> OpenTelemetry Collector v${VERSION} found in cache"
+  cp "$CACHE_DIR/$OTELCOL_BINARY" "$OTELCOL_CONFIG_DIR/$OTELCOL_BINARY"
 fi
-
-# Copy binaries
-mkdir -p "$BUILD_DIR/opentelemetry"
-chmod a+x "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}"
-cp "$CACHE_DIR/${OTELCOL_BINARY}-${VERSION}" "$BUILD_DIR/opentelemetry/otelcol"
 
 # Install the runner
 echo "-----> Installing OpenTelemetry Collector runner"
