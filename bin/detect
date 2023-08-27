@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-echo "Honeycombio OpenTelemetry Collector" && exit 0
+# the location of the app
+BUILD_DIR=$1
+
+# this pack is valid for apps with a hello.txt in the root
+if [ -f $BUILD_DIR/otelcol/config.yaml ]; then
+  echo "Honeycombio OpenTelemetry Collector"
+  exit 0
+else
+  exit 1
+fi

@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-APP_OTELCOL="$HOME/otelcol"
-export OTELCOL_CONFIG_DIR="$HOME/.otelcol"
+OTELCOL_CONFIG_DIR="$HOME/.otelcol"
+OTEL_CONFIG="$HOME/otelcol/config.yaml"
 
 if [ "$DYNOTYPE" == "run" ]; then
   exit 0
-fi
-
-export CUSTOM_APP_CONFIG="$APP_OTELCOL/config.yaml"
-
-if [[ -f "$CUSTOM_APP_CONFIG" ]]; then
-  export OTEL_CONFIG="${CUSTOM_APP_CONFIG}"
-else
-  export OTEL_CONFIG="${OTELCOL_CONFIG_DIR}/config.yaml"
 fi
 
 if [ -n "$DISABLE_OTELCOL" ]; then

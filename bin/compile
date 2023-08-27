@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# bin/compile <build-dir> <cache-dir>
+# bin/compile BUILD_DIR CACHE_DIR ENV_DIR
+# This script performs the buildpack transformation
 
 # Fail fast
 set -e
