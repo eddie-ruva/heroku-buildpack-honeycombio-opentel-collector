@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-OTELCOL_CONFIG_DIR="$HOME/.otelcol"
-OTEL_CONFIG="$HOME/otelcol/config.yaml"
+OTELCOL_DIR="$HOME/.otelcol"
+CONFIG_PATH="$OTELCOL_DIR/config.yaml"
 
 if [ "$DYNOTYPE" == "run" ]; then
   exit 0
@@ -12,11 +12,11 @@ if [ -n "$DISABLE_OTELCOL" ]; then
 else
   echo "-----> Starting OpenTelemetry Collector"
   echo $(ls)
-  echo $(ls $OTELCOL_CONFIG_DIR)
-  echo "USING CONFIG: ${OTEL_CONFIG}"
-  echo "$OTELCOL_CONFIG_DIR/otelcol --config $OTEL_CONFIG 2>&1 &"
+  echo $(ls $OTELCOL_DIR)
+  echo "USING CONFIG: ${CONFIG_PATH}"
+  echo "$OTELCOL_DIR/otelcol --config $CONFIG_PATH 2>&1 &"
   echo "-----> "
-  chmod a+x $OTELCOL_CONFIG_DIR/otelcol_hny_linux_amd64
-  $OTELCOL_CONFIG_DIR/otelcol_hny_linux_amd64 --config $OTEL_CONFIG 2>&1&
+  chmod a+x $OTELCOL_DIR/otelcol_hny_linux_amd64
+  $OTELCOL_DIR/otelcol_hny_linux_amd64 --config $CONFIG_PATH 2>&1&
   echo "-----> Started OpenTelemetry Collector"
 fi
