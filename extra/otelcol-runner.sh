@@ -4,6 +4,7 @@ OTELCOL_DIR="$HOME/.otelcol"
 CONFIG_PATH="$OTELCOL_DIR/config.yaml"
 
 # Check if it's a one-off dyno. When it is DYNO has a value like run.2123
+echo "Running on: ${DYNO}"
 if [ "$DYNO" == "run."* ]; then
   exit 0
 fi
